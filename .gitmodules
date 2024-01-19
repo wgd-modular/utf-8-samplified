@@ -1,0 +1,3 @@
+[submodule "eurocad"]
+	path = eurocad
+	url = https://github.com/wgd-modular/eurocad.git
