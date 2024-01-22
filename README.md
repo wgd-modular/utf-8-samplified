@@ -1,3 +1,3 @@
-# module
+# utf-8-samplified
 
-A template repository to create a new eurorack module.
+Arduino nano sample based 8-channel drum module
