@@ -64,7 +64,8 @@ def wav2c(infile, outfile, tablename, samplerate):
     fout = open(os.path.expanduser(outfile), "w")
     fout.write('#ifndef ' + tablename + '_H_' + '\n')
     fout.write('#define ' + tablename + '_H_' + '\n \n')
-    outstring = 'const uint8_t ' + tablename + '[' + str(length) + '] PROGMEM = {'
+    outstring = 'const uint16_t 'tablename + 'Len = ' + str(length) + '; \n\n';
+    outstring += 'const uint8_t ' + tablename + '[' + str(length) + '] PROGMEM = {'
 
     try:
         for i in range(len(values)):
