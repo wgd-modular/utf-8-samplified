@@ -1,6 +1,7 @@
 // dsp-D8 Drum Chip (c) DSP Synthesizers 2015
 // Free for non commercial use
 
+
 // Modified by ASCII to be triggered by digital inputs (2024)
 
 #include <avr/interrupt.h>
@@ -132,14 +133,14 @@ void setup()
 }
 
 uint8_t phaccBD,phaccCH,phaccCL,phaccCR,phaccOH,phaccRD,phaccRS,phaccSD;
-uint8_t pitchBD=42;
-uint8_t pitchCH=42;
-uint8_t pitchCL=42;
-uint8_t pitchCR=42;
-uint8_t pitchOH=42;
-uint8_t pitchRD=42;
-uint8_t pitchRS=42;
-uint8_t pitchSD=42;
+uint8_t pitchBD=28;
+uint8_t pitchCH=28;
+uint8_t pitchCL=28;
+uint8_t pitchCR=28;
+uint8_t pitchOH=28;
+uint8_t pitchRD=28;
+uint8_t pitchRS=28;
+uint8_t pitchSD=28;
 uint16_t samplecntBD,samplecntCH,samplecntCL,samplecntCR,samplecntOH,samplecntRD,samplecntRS,samplecntSD;
 uint16_t samplepntBD,samplepntCH,samplepntCL,samplepntCR,samplepntOH,samplepntRD,samplepntRS,samplepntSD;
 
