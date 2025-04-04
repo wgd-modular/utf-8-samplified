@@ -133,6 +133,16 @@ void setup()
 }
 
 uint8_t phaccBD,phaccCH,phaccCL,phaccCR,phaccOH,phaccRD,phaccRS,phaccSD;
+<<<<<<< HEAD
+uint8_t pitchBD=32;
+uint8_t pitchSD=62;
+uint8_t pitchCH=32;
+uint8_t pitchCL=32;
+uint8_t pitchCR=32;
+uint8_t pitchOH=32;
+uint8_t pitchRD=32;
+uint8_t pitchRS=52;
+=======
 uint8_t pitchBD=28;
 uint8_t pitchCH=28;
 uint8_t pitchCL=28;
@@ -141,6 +151,7 @@ uint8_t pitchOH=28;
 uint8_t pitchRD=28;
 uint8_t pitchRS=28;
 uint8_t pitchSD=28;
+>>>>>>> a4939a3c1647ea02244b6e4c8038a8c222b82560
 uint16_t samplecntBD,samplecntCH,samplecntCL,samplecntCR,samplecntOH,samplecntRD,samplecntRS,samplecntSD;
 uint16_t samplepntBD,samplepntCH,samplepntCL,samplepntCR,samplepntOH,samplepntRD,samplepntRS,samplepntSD;
 
@@ -156,101 +167,102 @@ void loop()
 {  
 
 
-	//------ Add current sample word to ringbuffer FIFO --------------------  
+  //------ Add current sample word to ringbuffer FIFO --------------------
 
-	if (RingCount<255) {  //if space in ringbuffer
-		total=0;
-		if (samplecntBD) {
-			phaccBD+=pitchBD;
-			if (phaccBD & 128) {
-				phaccBD &= 127;
-				samplepntBD++;
-				samplecntBD--;
+  if (RingCount < 255) { //if space in ringbuffer
+    total = 0;
+    if (samplepntBD < samplecntBD) {
+      phaccBD += pitchBD;
+      if (phaccBD & 128) {
+        phaccBD &= 127;
+        samplepntBD++;
+        samplecntBD--;
 
-			}
-			total+=(pgm_read_byte_near(BD + samplepntBD)-128);
-		}
-		if (samplecntSD) {
-			phaccSD+=pitchSD;
-			if (phaccSD & 128) {
-				phaccSD &= 127;
-				samplepntSD++;
-				samplecntSD--;
+      }
+      ///sounddata_length + lastSample - sample;
+      total += (pgm_read_byte_near(BD + samplepntBD) - 128);
+    }
+    if (samplepntSD < samplecntSD) {
+      phaccSD += pitchSD;
+      if (phaccSD & 128) {
+        phaccSD &= 127;
+        samplepntSD++;
+        samplecntSD--;
 
-			}
-			total+=(pgm_read_byte_near(SD + samplepntSD)-128);
-		}
-		if (samplecntCL) {
-			phaccCL+=pitchCL;
-			if (phaccCL & 128) {
-				phaccCL &= 127;
-				samplepntCL++;
-				samplecntCL--;
+      }
+      total += (pgm_read_byte_near(SD + samplepntSD) - 128);
+    }
+    if (samplepntCL < samplecntCL) {
+      phaccCL += pitchCL;
+      if (phaccCL & 128) {
+        phaccCL &= 127;
+        samplepntCL++;
+        samplecntCL--;
 
-			}
-			total+=(pgm_read_byte_near(CL + samplepntCL)-128);
-		}
-		if (samplecntRS) {
-			phaccRS+=pitchRS;
-			if (phaccRS & 128) {
-				phaccRS &= 127;
-				samplepntRS++;
-				samplecntRS--;
+      }
+      total += (pgm_read_byte_near(CL + samplepntCL) - 128);
+    }
+    if (samplepntRS < samplecntRS) {
+      phaccRS += pitchRS;
+      if (phaccRS & 128) {
+        phaccRS &= 127;
+        samplepntRS++;
+        samplecntRS--;
 
-			}
-			total+=(pgm_read_byte_near(RS + samplepntRS)-128);
-		}
-		if (samplecntCH) {
-			phaccCH+=pitchCH;
-			if (phaccCH & 128) {
-				phaccCH &= 127;
-				samplepntCH++;
-				samplecntCH--;
+      }
+      total += (pgm_read_byte_near(RS + samplepntRS) - 128);
+    }
+    if (samplepntCH < samplecntCH) {
+      phaccCH += pitchCH;
+      if (phaccCH & 128) {
+        phaccCH &= 127;
+        samplepntCH++;
+        samplecntCH--;
 
-			}
-			total+=(pgm_read_byte_near(CH + samplepntCH)-128);
-		}    
-		if (samplecntOH) {
-			phaccOH+=pitchOH;
-			if (phaccOH & 128) {
-				phaccOH &= 127;
-				samplepntOH++;
-				samplecntOH--;
+      }
+      total += (pgm_read_byte_near(CH + samplepntCH) - 128);
+    }
+    if (samplepntOH < samplecntOH) {
+      phaccOH += pitchOH;
+      if (phaccOH & 128) {
+        phaccOH &= 127;
+        samplepntOH++;
+        samplecntOH--;
 
-			}
-			total+=(pgm_read_byte_near(OH + samplepntOH)-128);
-		}  
-		if (samplecntCR) {
-			phaccCR+=pitchCR;
-			if (phaccCR & 128) {
-				phaccCR &= 127;
-				samplepntCR++;
-				samplecntCR--;
+      }
+      total += (pgm_read_byte_near(OH + samplepntOH) - 128);
+    }
+    if (samplepntCR < samplecntCR) {
+      phaccCR += pitchCR;
+      if (phaccCR & 128) {
+        phaccCR &= 127;
+        samplepntCR++;
+        samplecntCR--;
 
-			}
-			total+=(pgm_read_byte_near(CR + samplepntCR)-128);
-		}  
-		if (samplecntRD) {
-			phaccRD+=pitchRD;
-			if (phaccRD & 128) {
-				phaccRD &= 127;
-				samplepntRD++;
-				samplecntRD--;
+      }
+      total += (pgm_read_byte_near(CR + samplepntCR) - 128);
+    }
+    if (samplepntRD < samplecntRD) {
+      phaccRD += pitchRD;
+      if (phaccRD & 128) {
+        phaccRD &= 127;
+        samplepntRD++;
+        samplecntRD--;
 
-			}
-			total+=(pgm_read_byte_near(RD + samplepntRD)-128);
-		}  
-		total>>=1;  
-		if (!(PINB&4)) total>>=1;
-		total+=128;  
-		if (total>255) total=255;
+      }
+      total += (pgm_read_byte_near(RD + samplepntRD) - 128);
+    }
+    total >>= 1;
+    if (!(PINB & 4)) total >>= 1; // why twice? reduces amplitude.
+    total += 128;
+    if (total > 255) total = 255;
 
-		cli();
-		Ringbuffer[RingWrite]=total;
-		RingWrite++;
-		RingCount++;
-		sei();
-	}
+    cli();
+    Ringbuffer[RingWrite] = total;
+    RingWrite++;
+    RingCount++;
+    sei();
+  }
 
 	//----------------------------------------------------------------------------
 
