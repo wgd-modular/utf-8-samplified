@@ -40,8 +40,13 @@ uint8_t Ringbuffer[256];
 uint8_t RingWrite = 0;
 uint8_t RingRead = 0;
 volatile uint8_t RingCount = 0;
+<<<<<<< HEAD
+int speakerPin = 11;
+=======
+>>>>>>> a4939a3c1647ea02244b6e4c8038a8c222b82560
 
 //-----------------------------------------
+
 ISR(TIMER1_COMPA_vect) {
 
   //-------------------  Ringbuffer handler -------------------------
@@ -57,10 +62,60 @@ ISR(TIMER1_COMPA_vect) {
 
 bool debug = false;
 
+<<<<<<< HEAD
+/*
+ * An example of how you get rid of click at end of play
+ * We just make sure to not wrap around the samplecnt
+ISR(TIMER1_COMPA_vect) {
+   if (sample >= sounddata_length) {
+       if (sample == sounddata_length + lastSample) {
+           stopPlayback();
+       }
+       else {
+           if(speakerPin==11){
+               // Ramp down to zero to reduce the click at the end of playback.
+               OCR2A = sounddata_length + lastSample - sample;
+           } else {
+               OCR2B = sounddata_length + lastSample - sample; // pin 3
+           }
+       }
+   }
+   else {
+       if(speakerPin==11){
+           OCR2A = Ringbuffer[(RingRead++)]; //pgm_read_byte(&sounddata_data[sample]);
+       } else {
+           OCR2B = Ringbuffer[(RingRead++)]; //pgm_read_byte(&sounddata_data[sample]); //pin 3
+       }
+   }
+   RingCount--; // ++sample;
+}
+void stopPlayback()
+{
+   // Disable playback per-sample interrupt.
+   TIMSK1 &= ~_BV(OCIE1A);
+   // Disable the per-sample timer completely.
+   TCCR1B &= ~_BV(CS10);
+   // Disable the PWM timer.
+   TCCR2B &= ~_BV(CS10);
+   digitalWrite(speakerPin, LOW);
+   
+}
+*/
+
+bool debug = false;
+
+
+
 void setup()
 {
   OSCCAL = 0xFF;
 
+=======
+void setup()
+{
+  OSCCAL = 0xFF;
+
+>>>>>>> a4939a3c1647ea02244b6e4c8038a8c222b82560
   for (byte i = 0; i < 6; i++) {
     pinMode(inputs[i], INPUT);
   }
@@ -161,7 +216,11 @@ void loop()
 
   if (RingCount < 255) { //if space in ringbuffer
     total = 0;
+<<<<<<< HEAD
+    if (samplepntBD < samplecntBD) {
+=======
     if (samplecntBD) {
+>>>>>>> a4939a3c1647ea02244b6e4c8038a8c222b82560
       phaccBD += pitchBD;
       if (phaccBD & 128) {
         phaccBD &= 127;
@@ -169,9 +228,16 @@ void loop()
         samplecntBD--;
 
       }
+<<<<<<< HEAD
+      ///sounddata_length + lastSample - sample;
+      total += (pgm_read_byte_near(BD + samplepntBD) - 128);
+    }
+    if (samplepntSD < samplecntSD) {
+=======
       total += (pgm_read_byte_near(BD + samplepntBD) - 128);
     }
     if (samplecntSD) {
+>>>>>>> a4939a3c1647ea02244b6e4c8038a8c222b82560
       phaccSD += pitchSD;
       if (phaccSD & 128) {
         phaccSD &= 127;
@@ -181,7 +247,11 @@ void loop()
       }
       total += (pgm_read_byte_near(SD + samplepntSD) - 128);
     }
+<<<<<<< HEAD
+    if (samplepntCL < samplecntCL) {
+=======
     if (samplecntCL) {
+>>>>>>> a4939a3c1647ea02244b6e4c8038a8c222b82560
       phaccCL += pitchCL;
       if (phaccCL & 128) {
         phaccCL &= 127;
@@ -191,7 +261,11 @@ void loop()
       }
       total += (pgm_read_byte_near(CL + samplepntCL) - 128);
     }
+<<<<<<< HEAD
+    if (samplepntRS < samplecntRS) {
+=======
     if (samplecntRS) {
+>>>>>>> a4939a3c1647ea02244b6e4c8038a8c222b82560
       phaccRS += pitchRS;
       if (phaccRS & 128) {
         phaccRS &= 127;
@@ -201,7 +275,11 @@ void loop()
       }
       total += (pgm_read_byte_near(RS + samplepntRS) - 128);
     }
+<<<<<<< HEAD
+    if (samplepntCH < samplecntCH) {
+=======
     if (samplecntCH) {
+>>>>>>> a4939a3c1647ea02244b6e4c8038a8c222b82560
       phaccCH += pitchCH;
       if (phaccCH & 128) {
         phaccCH &= 127;
@@ -211,7 +289,11 @@ void loop()
       }
       total += (pgm_read_byte_near(CH + samplepntCH) - 128);
     }
+<<<<<<< HEAD
+    if (samplepntOH < samplecntOH) {
+=======
     if (samplecntOH) {
+>>>>>>> a4939a3c1647ea02244b6e4c8038a8c222b82560
       phaccOH += pitchOH;
       if (phaccOH & 128) {
         phaccOH &= 127;
@@ -221,7 +303,11 @@ void loop()
       }
       total += (pgm_read_byte_near(OH + samplepntOH) - 128);
     }
+<<<<<<< HEAD
+    if (samplepntCR < samplecntCR) {
+=======
     if (samplecntCR) {
+>>>>>>> a4939a3c1647ea02244b6e4c8038a8c222b82560
       phaccCR += pitchCR;
       if (phaccCR & 128) {
         phaccCR &= 127;
@@ -231,7 +317,11 @@ void loop()
       }
       total += (pgm_read_byte_near(CR + samplepntCR) - 128);
     }
+<<<<<<< HEAD
+    if (samplepntRD < samplecntRD) {
+=======
     if (samplecntRD) {
+>>>>>>> a4939a3c1647ea02244b6e4c8038a8c222b82560
       phaccRD += pitchRD;
       if (phaccRD & 128) {
         phaccRD &= 127;
@@ -242,7 +332,11 @@ void loop()
       total += (pgm_read_byte_near(RD + samplepntRD) - 128);
     }
     total >>= 1;
+<<<<<<< HEAD
+    if (!(PINB & 4)) total >>= 1; // why twice? reduces amplitude.
+=======
     if (!(PINB & 4)) total >>= 1;
+>>>>>>> a4939a3c1647ea02244b6e4c8038a8c222b82560
     total += 128;
     if (total > 255) total = 255;
 
