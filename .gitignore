@@ -2,4 +2,6 @@ pcb/gerbers
 panel/gerbers
 pcb/gerbers.zip
 panel/gerbers.zip
+*.WAV
+*.wav
 */.DS_Store
