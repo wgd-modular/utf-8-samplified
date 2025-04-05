@@ -14,7 +14,8 @@
 #
 #	@note Batch wav conversion
 #   1. first sox : for file in *.WAV; do sox $file  -r 10000 -D -c 1 -b 8  "$(basename $file .wav).wav" -V; done 
-#      or with trim "$(basename $file .wav).wav" trim 0 -0.5; done
+#      or with trim  and normalize: 
+#      for file in *.WAV; do sox $file  -r 10000 -D -c 1 -b 8 "$(basename $file .wav).wav" trim 0 -0.4 norm -0.2; done
 #   2. now headers : 
 #      for file in *.WAV; do ../wav2c.py "$(basename ${file%})" ${file%.*}.h "${file%.*}" 11000 ; done
 #
