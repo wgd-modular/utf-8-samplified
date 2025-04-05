@@ -4,10 +4,6 @@
 #  @ingroup util
 #	A script for converting wav 8/16 bit sound data files to wavetables for c applications.
 #
-#   Batch wav conversion with
-#   1. first sox : for file in *.WAV; do sox $file  -r 22000 -D -c 1 -b 8  "$(basename $file .wav).wav" -V; done
-#   2. now headers : for file in *.wav; do ./char2mozzi.py $file "$(basename $file .wav).h" "$(basename $file .wav)" 22000; done
-#
 #	Usage: 
 #	>>>wav2c.py <infile outfile tablename samplerate>
 #	
@@ -17,8 +13,10 @@
 #	@param samplerate	The samplerate the sound was recorded at.  Choose what make sense for you, if it's not a normal recorded sample.
 #
 #	@note Batch wav conversion
-#   1. first sox : for file in *.WAV; do sox $file  -r 10000 -D -c 1 -b 8  "$(basename $file .wav).wav" -V; done
-#   2. now headers : for file in *.wav; do ./wav2c.py $file "$(basename $file .wav).h" "$(basename $file .wav)" 10000; done
+#   1. first sox : for file in *.WAV; do sox $file  -r 10000 -D -c 1 -b 8  "$(basename $file .wav).wav" -V; done 
+#      or with trim "$(basename $file .wav).wav" trim 0 -0.5; done
+#   2. now headers : 
+#      for file in *.WAV; do ../wav2c.py "$(basename ${file%})" ${file%.*}.h "${file%.*}" 11000 ; done
 #
 #	@note Using Audacity to prepare sound files for converting:
 
