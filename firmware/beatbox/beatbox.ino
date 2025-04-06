@@ -133,7 +133,6 @@ void setup()
 }
 
 uint8_t phaccBD,phaccCH,phaccCL,phaccCR,phaccOH,phaccRD,phaccRS,phaccSD;
-<<<<<<< HEAD
 uint8_t pitchBD=32;
 uint8_t pitchSD=62;
 uint8_t pitchCH=32;
@@ -142,16 +141,6 @@ uint8_t pitchCR=32;
 uint8_t pitchOH=32;
 uint8_t pitchRD=32;
 uint8_t pitchRS=52;
-=======
-uint8_t pitchBD=28;
-uint8_t pitchCH=28;
-uint8_t pitchCL=28;
-uint8_t pitchCR=28;
-uint8_t pitchOH=28;
-uint8_t pitchRD=28;
-uint8_t pitchRS=28;
-uint8_t pitchSD=28;
->>>>>>> a4939a3c1647ea02244b6e4c8038a8c222b82560
 uint16_t samplecntBD,samplecntCH,samplecntCL,samplecntCR,samplecntOH,samplecntRD,samplecntRS,samplecntSD;
 uint16_t samplepntBD,samplepntCH,samplepntCL,samplepntCR,samplepntOH,samplepntRD,samplepntRS,samplepntSD;
 
@@ -165,8 +154,6 @@ char ser=' ';
 
 void loop() 
 {  
-
-
   //------ Add current sample word to ringbuffer FIFO --------------------
 
   if (RingCount < 255) { //if space in ringbuffer

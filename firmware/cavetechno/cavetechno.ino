@@ -138,14 +138,14 @@ void setup()
 }
 
 uint8_t phaccBD, phaccCH, phaccCL, phaccCR, phaccOH, phaccRD, phaccRS, phaccSD;
-uint8_t pitchBD = 28;
-uint8_t pitchCH = 28;
-uint8_t pitchCL = 28;
-uint8_t pitchCR = 28;
-uint8_t pitchOH = 28;
-uint8_t pitchRD = 28;
-uint8_t pitchRS = 28;
-uint8_t pitchSD = 28;
+uint8_t pitchBD = 30;
+uint8_t pitchCH = 30;
+uint8_t pitchCL = 30;
+uint8_t pitchCR = 30;
+uint8_t pitchOH = 30;
+uint8_t pitchRD = 30;
+uint8_t pitchRS = 30;
+uint8_t pitchSD = 30;
 uint16_t samplecntBD, samplecntCH, samplecntCL, samplecntCR, samplecntOH, samplecntRD, samplecntRS, samplecntSD;
 uint16_t samplepntBD, samplepntCH, samplepntCL, samplepntCR, samplepntOH, samplepntRD, samplepntRS, samplepntSD;
 
